@@ -1,0 +1,21 @@
+name: Use functions in expressions
+
+on: [push, pull_request]
+    
+jobs:
+  functions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dumb
+        run: |
+          echo ${{ contains ('hello', 'll') }}
+          echo ${{ startsWith( 'hello', 'he') }}
+          echo ${{ endsWith ( 'hello', 'lo') }}
+          echo ${{ format('Hello {0} {1} {2}', 'World', '!', '!') }}
+  One:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Test_1
+        run: |
+          echo "Everything went okay ${{ github.event_name }}"
